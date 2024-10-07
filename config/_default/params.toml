@@ -38,19 +38,19 @@ type = "search"
 type = "archives"
 
 [widgets.homepage.params]
-limit = 5
+limit = 20
 
 [[widgets.homepage]]
 type = "categories"
 
 [widgets.homepage.params]
-limit = 10
+limit = 20
 
 [[widgets.homepage]]
 type = "tag-cloud"
 
 [widgets.homepage.params]
-limit = 10
+limit = 20
 
 [[widgets.page]]
 type = "toc"
