@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/SQL-01/index.md",
+                "file": "Upload.md",
                 "mode": "source",
                 "source": true
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/SQL-01/index.md",
+                "file": "Upload.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/SQL-01/index.md",
+                "file": "Upload.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/SQL-01/index.md"
+                "file": "Upload.md"
               }
             }
           }
@@ -148,10 +148,18 @@
   },
   "active": "ce8b09290f057e22",
   "lastOpenFiles": [
+    "content/post/Linux-01/index.md",
+    "Upload.md",
+    "content/post/Linux/index.md",
+    "content/post/Linux-01",
+    "content/post/SQL-01/index.md",
+    "content/post/Linux",
+    "content/post/SQL-04 (副本)/index.md",
+    "content/post/SQL-04 (副本)",
+    "README (副本).md",
     "content/post/SQL-02/index.md",
     "content/post/SQL-03/index.md",
     "content/post/SQL-04/index.md",
-    "content/post/SQL-01/index.md",
     "public/p/sql-04/index.html",
     "public/p/sql-04",
     "public/p/sql-03/index.html",
@@ -161,9 +169,6 @@
     "content/post/SQL-02（副本 2）/index.md",
     "content/post/SQL-02（副本 2）",
     "content/post/SQL-02 (副本)/index.md",
-    "content/post/SQL-02 (副本)",
-    "public/p/sql-02/index.html",
-    "public/p/sql-02",
     "content/_index.md",
     "public/p/film-01/1.4f0fb085bbc5e21bba89f4357f913a65.4f0fb085bbc5e21bba89f4357f913a65_hu2877505954058554171.gif",
     "resources/_gen/images/p/film-01/1.4f0fb085bbc5e21bba89f4357f913a65.4f0fb085bbc5e21bba89f4357f913a65_hu2877505954058554171.gif",
