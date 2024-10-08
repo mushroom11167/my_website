@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Jia-Yi Lin</title><link>https://mushroom11167.github.io/my_website/categories/python/</link><description>Recent content in Python on Jia-Yi Lin</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 08 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mushroom11167.github.io/my_website/categories/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Air quality index (AQI)(historical data)</title><link>https://mushroom11167.github.io/my_website/p/python-01/</link><pubDate>Tue, 08 Oct 2024 00:00:00 +0000</pubDate><guid>https://mushroom11167.github.io/my_website/p/python-01/</guid><description>&lt;h2 id="空氣汙染">&lt;strong>空氣汙染&lt;/strong>
+&lt;/h2>&lt;p>資料來源自&lt;a class="link" href="https://data.moenv.gov.tw/" target="_blank" rel="noopener"
+>環境部環境資料開放平臺&lt;/a>，先至網站註冊會員得到API，再點選開發指南至&lt;a class="link" href="https://data.moenv.gov.tw/swagger/" target="_blank" rel="noopener"
+>資料擷取API線上說明文件&lt;/a>&lt;/p>
+&lt;h2 id="package">&lt;strong>Package&lt;/strong>
+&lt;/h2>&lt;p>先安裝我們要使用的套件，分別為requests、pandas、datetime及time：&lt;/p>
+&lt;ul>
+&lt;li>request：抓取網路資料，對網站發出請求&lt;/li>
+&lt;li>pandas：處理資料及csv文件&lt;/li>
+&lt;li>datetime：處理日期&lt;/li>
+&lt;li>time：每次請求間格的時間&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">requests&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">pandas&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">pd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">datetime&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="爬蟲">&lt;strong>爬蟲&lt;/strong>
+&lt;/h2>&lt;h3 id="crawl_and_append_csv">&lt;strong>crawl_and_append_csv&lt;/strong>
+&lt;/h3>&lt;p>這步是要從我們指定的網站去下載csv檔，併進空的資料集裡&lt;/p>
+&lt;ul>
+&lt;li>combined_df 存放每次下載資料的資料集&lt;/li>
+&lt;li>pd.read_csv 讀取csv檔的資料&lt;/li>
+&lt;li>pd.concat 將每次下載的資料合併&lt;/li>
+&lt;/ul>
+&lt;h3 id="date_range">&lt;strong>date_range&lt;/strong>
+&lt;/h3>&lt;p>這步是抓取時間內的資料，由於每次下載上限是1000筆，所以是分批下載，最後將所有檔案合併成一個CSV檔&lt;/p>
+&lt;ul>
+&lt;li>start_date、end_date：爬取資料的開始和結束日期&lt;/li>
+&lt;li>api_key：API金鑰&lt;/li>
+&lt;li>limit：每次爬取資料的筆數（最大1000筆）&lt;/li>
+&lt;li>output_path：輸出的路徑&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">crawl_and_append_csv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">combined_df&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">requests&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">data_csv&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pd&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_csv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">combined_df&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pd&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">concat&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="n">combined_df&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">data_csv&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">ignore_index&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">return&lt;/span> &lt;span class="n">combined_df&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data_csv&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">date_range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">end_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">url_template&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">api_key&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">limit&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">start_date_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strptime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end_date_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strptime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">combined_df&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pd&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">DataFrame&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">offset&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">while&lt;/span> &lt;span class="kc">True&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">url_template&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">format&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start_date_str&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">end_date_str&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">api_key&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">offset&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">limit&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">combined_df&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">current_batch_size&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">crawl_and_append_csv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">combined_df&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 檢查抓取的資料數量，如果少於 limit，則說明已經抓完，跳出循環&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="n">current_batch_size&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">limit&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新 offset&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">offset&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">limit&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 將合併後的資料寫入 CSV 檔案&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">combined_df&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">to_csv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">index&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;utf-8&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 定義起始和結束日期&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">start_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">input&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;請輸入開始日期（格式：YYYY-MM-DD）：&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">input&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;請輸入結束日期（格式：YYYY-MM-DD）：&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># api 金鑰&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">api_key&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;輸入自己的API&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># limit 是每次下載的筆數，一次最多只能下載 1000 筆&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">limit&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 存放路徑與檔名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">output_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;/home/mushroom/Jia/python/air-pollution/Air-202209.csv&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">url_template&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;https://data.moenv.gov.tw/api/v2/aqx_p_488?&amp;amp;format=csv&amp;amp;filters=datacreationdate,GR,&lt;/span>&lt;span class="si">{0}&lt;/span>&lt;span class="s2">|datacreationdate,LE,&lt;/span>&lt;span class="si">{1}&lt;/span>&lt;span class="s2">&amp;amp;api_key=&lt;/span>&lt;span class="si">{2}&lt;/span>&lt;span class="s2">&amp;amp;offset=&lt;/span>&lt;span class="si">{3}&lt;/span>&lt;span class="s2">&amp;amp;limit=&lt;/span>&lt;span class="si">{4}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">date_range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">end_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">url_template&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">api_key&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">limit&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_path&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>輸入日期：&lt;/p>
+&lt;p>&lt;img src="https://mushroom11167.github.io/my_website/my_website/p/python-01/1.png"
+width="821"
+height="52"
+srcset="https://mushroom11167.github.io/my_website/my_website/p/python-01/1_hu10334264340649662604.png 480w, https://mushroom11167.github.io/my_website/my_website/p/python-01/1_hu6486677922116656530.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="1578"
+data-flex-basis="3789px"
+>&lt;/p>
+&lt;p>結果：&lt;/p>
+&lt;p>&lt;img src="https://mushroom11167.github.io/my_website/my_website/p/python-01/2.png"
+width="695"
+height="70"
+srcset="https://mushroom11167.github.io/my_website/my_website/p/python-01/2_hu16282129770904246065.png 480w, https://mushroom11167.github.io/my_website/my_website/p/python-01/2_hu12702224798451221685.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="992"
+data-flex-basis="2382px"
+>&lt;/p></description></item></channel></rss>
