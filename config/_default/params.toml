@@ -79,10 +79,16 @@ enabled = true
 enabled = true
 provider = "giscus"
 
- [comments.cusdis]
-appId = ""  # 替換為從 Cusdis 獲取的 App ID
-host = ""
-lang = ""  # 根據需求設置語言
+[comments.giscus]
+repo = "mushroom11167/my_website"
+repoID = ""
+category = ""
+categoryID = ""
+mapping = ""
+lightTheme = "light"
+darkTheme = "dark"
+reactionsEnabled = 1
+emitMetadata = 0
 
 
 [comments.disqusjs]
@@ -133,16 +139,7 @@ defaultHomeserverUrl = "https://matrix.cactus.chat:8448"
 serverName = "cactus.chat"
 siteName = ""
 
-[comments.giscus]
-repo = ""
-repoID = ""
-category = ""
-categoryID = ""
-mapping = ""
-lightTheme = ""
-darkTheme = ""
-reactionsEnabled = 1
-emitMetadata = 0
+
 
 [comments.gitalk]
 owner = ""
@@ -151,4 +148,7 @@ repo = ""
 clientID = ""
 clientSecret = ""
 
-
+[comments.cusdis]
+appId = ""  # 替換為從 Cusdis 獲取的 App ID
+host = ""
+lang = ""  # 根據需求設置語言
