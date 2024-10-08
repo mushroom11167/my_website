@@ -75,17 +75,14 @@ enabled = true
 enabled = true
 
 ## Comments
-##[comments]
-##enabled = true
-##provider = "disqus"
-
 [comments]
 enabled = true
-provider = "cusdis"  # 設定評論系統的提供者為 Cusdis
+provider = "giscus"
+
  [comments.cusdis]
-appId = "f6fddc5b-fca0-4629-ac44-a1e89fa99f73"  # 替換為從 Cusdis 獲取的 App ID
-host = "https://cusdis.com"
-lang = "zh-TW"  # 根據需求設置語言
+appId = ""  # 替換為從 Cusdis 獲取的 App ID
+host = ""
+lang = ""  # 根據需求設置語言
 
 
 [comments.disqusjs]
