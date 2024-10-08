@@ -28,8 +28,16 @@ $ cd ../
 $ sudo rm -rf filename
 ```
 
-### Add
+### Add file
 
 ```console
 $ mkdir filename
+```
+
+### Add document
+
+```console
+$ > index.md
+$ > index.docx
+$ > index.txt
 ```
