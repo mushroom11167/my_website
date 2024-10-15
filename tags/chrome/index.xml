@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Chrome on Jia-Yi Lin</title><link>https://mushroom11167.github.io/my_website/tags/chrome/</link><description>Recent content in Chrome on Jia-Yi Lin</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 12 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mushroom11167.github.io/my_website/tags/chrome/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Install Chrome on Ubuntu</title><link>https://mushroom11167.github.io/my_website/p/linux-02/</link><pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate><guid>https://mushroom11167.github.io/my_website/p/linux-02/</guid><description>&lt;img src="https://mushroom11167.github.io/my_website/p/linux-02/1.gif" alt="Featured image of post How to Install Chrome on Ubuntu" />&lt;p>&lt;img src="https://mushroom11167.github.io/my_website/my_website/p/linux-02/2.png"
+width="1920"
+height="1080"
+srcset="https://mushroom11167.github.io/my_website/my_website/p/linux-02/2_hu8093086814661591238.png 480w, https://mushroom11167.github.io/my_website/my_website/p/linux-02/2_hu11685837522882640347.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+Now, let&amp;rsquo;s learn how to install Chrome on Ubuntu.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>First, we have to download debian package on &lt;a class="link" href="https://www.google.com/intl/zh-TW/chrome/" target="_blank" rel="noopener"
+>Google Chrome&lt;/a>, please click &lt;strong>Download Chrome&lt;/strong>.
+&lt;img src="https://mushroom11167.github.io/my_website/my_website/p/linux-02/3.png"
+width="1920"
+height="1080"
+srcset="https://mushroom11167.github.io/my_website/my_website/p/linux-02/3_hu14464741085770208572.png 480w, https://mushroom11167.github.io/my_website/my_website/p/linux-02/3_hu11227814252090938946.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Click that &lt;strong>64 位元 .deb&lt;/strong> to get the debian pckage.
+&lt;img src="https://mushroom11167.github.io/my_website/my_website/p/linux-02/4.png"
+width="1920"
+height="1080"
+srcset="https://mushroom11167.github.io/my_website/my_website/p/linux-02/4_hu1042811424529860694.png 480w, https://mushroom11167.github.io/my_website/my_website/p/linux-02/4_hu2780675294924135540.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Open terminal to enter command to complete installation!&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-console" data-lang="console">&lt;span class="line">&lt;span class="cl">&lt;span class="gp">$&lt;/span> sudo apt install /home/mushroom/下載/google-chrome-stable_current_amd64.deb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://mushroom11167.github.io/my_website/my_website/p/linux-02/5.png"
+width="1920"
+height="1080"
+srcset="https://mushroom11167.github.io/my_website/my_website/p/linux-02/5_hu15676219980609841721.png 480w, https://mushroom11167.github.io/my_website/my_website/p/linux-02/5_hu9573314995037569417.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p></description></item></channel></rss>
